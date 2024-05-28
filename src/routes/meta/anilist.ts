@@ -132,7 +132,7 @@ const routes = async (fastify: FastifyInstance, options: RegisterOptions) => {
       const weekEnd = (request.query as { weekEnd: number | string }).weekEnd;
       const notYetAired = (request.query as { notYetAired: boolean }).notYetAired;
 
-       const anilist = generateAnilistMeta();
+      const anilist = generateAnilistMeta();
       const _weekStart = Math.ceil(Date.now() / 1000);
 
       const res = await anilist.fetchAiringSchedule(
@@ -364,9 +364,7 @@ const generateAnilistMeta = (provider: string | undefined = undefined): Anilist 
       url: process.env.PROXY as string | string[],
     });
   } else {
-    return new Anilist(undefined, {
-      url: process.env.PROXY as string | string[],
-    });
+    return new Anilist();
   }
 };
 
